@@ -28,18 +28,15 @@ jobs:
       with:
         node-verions: 12
         
-    - uses: borales/actions-yarn@v2.0.0
+    - uses: borales/actions-yarn@v2.1.0
       with:
         cmd: install # will run `yarn install` command
         
-        
-        name: create react app
-        run: yarn build
-        
- 
+    - name: Build React App
+      run: yarn build
       
-    -name: Install surge
-     run: npm install --global surge
-     
-     -name: Deploy surge
+    - name: install surge
+      run: sudo npm  install --global surge
+      
+    - name: Deploy surge
       run: surge ./build myfirstApp2020.surge.sh --token ${{secrets.FIRST_APP}}
